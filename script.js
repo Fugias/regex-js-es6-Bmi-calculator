@@ -12,15 +12,15 @@ const bmiCalc = (height, weight) => {
   bmiValue.value = (weight / Math.pow(height, 2)).toFixed(2);
 }
 
-const heightValue = /^\d{1}([.,]\d{1,2})?$/;
-const weightValue = /^\d{2}(\d{1})?([.,]\d{1,2})?$/;
+const heightValue = /^\d{1}([.]\d{1,2})?$/;
+const weightValue = /^\d{2}(\d{1})?([.]\d{1,2})?$/;
 
 const submit = document.querySelector('[type=submit]')
 const bmiValue = document.querySelector(".bmi")
 const result = document.querySelector(".result")
 let weight = document.querySelector('.weight')
 let height = document.querySelector('.height')
-let select = document.querySelector('select')
+const select = document.querySelector('select')
 
 submit.addEventListener('click', e => {
   e.preventDefault()
@@ -45,12 +45,12 @@ submit.addEventListener('click', e => {
 
   for (const scale in bmi[select.value]) {
 
-    if(parseInt(bmiValue.value) <= bmi[select.value][scale])
+    if(parseFloat(bmiValue.value) <= bmi[select.value][scale])
     {
       result.value = scale
       break;
     }
-    else if(parseInt(bmiValue.value) > bmi[select.value].obezita){
+    else if(parseFloat(bmiValue.value) > bmi[select.value].obezita){
       result.value = "silna obezita"
       break;
     }
